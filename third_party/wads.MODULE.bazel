@@ -1,0 +1,16 @@
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "freedoom",
+    build_file_content = """
+exports_files([
+    "freedoom1.wad",
+    "freedoom2.wad",
+])
+""",
+    sha256 = "3f9b264f3e3ce503b4fb7f6bdcb1f419d93c7b546f4df3e874dd878db9688f59",
+    strip_prefix = "freedoom-0.13.0",
+    urls = [
+        "https://github.com/freedoom/freedoom/releases/download/v0.13.0/freedoom-0.13.0.zip",
+    ],
+)

@@ -1,0 +1,47 @@
+bazel_dep(name = "crispy-doom", version = "7.1.0.bcr.beta.1")
+
+http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_file(
+    name = "uzdoom_linux_appimage",
+    downloaded_file_path = "Linux-UZDoom-4.14.3.AppImage",
+    executable = True,
+    sha256 = "7a0918ab951da5ffe873b7d479f701c09c216e0a23d821eef4548283ba43a167",
+    urls = [
+        "https://github.com/UZDoom/UZDoom/releases/download/4.14.3/Linux-UZDoom-4.14.3.AppImage",
+    ],
+)
+
+http_archive(
+    name = "uzdoom_windows",
+    build_file_content = """
+exports_files(["uzdoom.exe"])
+""",
+    sha256 = "e933f9e82cd411f31dd268dba71b18bde6b06832d85600f27c94d54bfbc2e2bf",
+    urls = [
+        "https://github.com/UZDoom/UZDoom/releases/download/4.14.3/Windows-UZDoom-4.14.3.zip",
+    ],
+)
+
+http_archive(
+    name = "uzdoom_macos",
+    build_file_content = """
+exports_files(["uzdoom.app/Contents/MacOS/uzdoom"])
+""",
+    sha256 = "7fea2eb9de6a4694e56da9f7750f8f002d272891908b730020122b22beb59c0c",
+    urls = [
+        "https://github.com/UZDoom/UZDoom/releases/download/4.14.3/macOS-UZDoom-4.14.3.zip",
+    ],
+)
+
+http_archive(
+    name = "doom_ascii",
+    build_file = "//third_party:doom_ascii.BUILD.bazel",
+    sha256 = "7ade3d78d9403542cf53b3ed3a1575751c815d4b7ff3f1fb364aa1ee664807f0",
+    strip_prefix = "doom-ascii-0.3.1",
+    urls = [
+        "https://github.com/wojciech-graj/doom-ascii/archive/refs/tags/0.3.1.tar.gz",
+    ],
+)

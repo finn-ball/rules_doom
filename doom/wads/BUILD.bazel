@@ -1,0 +1,33 @@
+load("//doom:defs.bzl", "doom_iwad")
+
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "iwad",
+    actual = select({
+        "//config/iwad:freedoom1": ":freedoom1",
+        "//conditions:default": ":freedoom2",
+    }),
+)
+
+alias(
+    name = "freedoom1_wad",
+    actual = "@freedoom//:freedoom1.wad",
+)
+
+alias(
+    name = "freedoom2_wad",
+    actual = "@freedoom//:freedoom2.wad",
+)
+
+doom_iwad(
+    name = "freedoom1",
+    map_namespace_style = "episode",
+    wad = "@freedoom//:freedoom1.wad",
+)
+
+doom_iwad(
+    name = "freedoom2",
+    map_namespace_style = "mapxx",
+    wad = "@freedoom//:freedoom2.wad",
+)

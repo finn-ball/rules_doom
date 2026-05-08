@@ -1,0 +1,38 @@
+load("@rules_java//java:java_binary.bzl", "java_binary")
+load("@rules_java//java:java_import.bzl", "java_import")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":wadc_license"],
+)
+
+exports_files(
+    glob([
+        "examples/**/*.wl",
+    ]),
+    visibility = ["//visibility:public"],
+)
+
+license(
+    name = "wadc_license",
+    license_kinds = ["@rules_license//licenses/spdx:GPL-2.0-only"],
+    license_text = "LICENSE.txt",
+)
+
+java_import(
+    name = "wadc_jar",
+    jars = ["wadc-3.1-jar-with-dependencies.jar"],
+)
+
+java_binary(
+    name = "wadc",
+    main_class = "org.redmars.wadc.WadCCLI",
+    runtime_deps = [":wadc_jar"],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "includes",
+    srcs = glob(["include/*.h"]),
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":license"],
+)
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:GPL-2.0-or-later"],
+    license_text = "COPYING",
+)
+
+cc_library(
+    name = "zdbsp_lib",
+    srcs = glob(
+        ["*.c", "*.cpp"],
+        exclude = [
+            "main.cpp",
+            "nodebuild_classify_sse1.cpp",
+            "nodebuild_classify_sse2.cpp",
+            "nodebuild_classify_sse2_vect.cpp",
+            "view.cpp",
+        ],
+    ),
+    hdrs = glob(["*.h"]),
+    defines = [
+        "NO_MAP_VIEWER",
+        "DISABLE_SSE",
+        "stricmp=strcasecmp",
+        "strnicmp=strncasecmp",
+    ],
+    deps = ["@zlib"],
+)
+
+cc_binary(
+    name = "zdbsp",
+    srcs = ["main.cpp"],
+    defines = [
+        "DISABLE_SSE",
+        "stricmp=strcasecmp",
+    ],
+    deps = [":zdbsp_lib"],
+    visibility = ["//visibility:public"],
+)

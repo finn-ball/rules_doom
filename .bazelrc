@@ -1,0 +1,9 @@
+common --platforms=@llvm//platforms:linux_x86_64_gnu.2.28
+common --host_platform=@llvm//platforms:linux_x86_64_gnu.2.28
+common --cxxopt=-std=c++20
+common --host_cxxopt=-std=c++20
+common --per_file_copt=external/.*@-w
+common --host_per_file_copt=external/.*@-w
+
+build --flag_alias=doom_engine=//config/engine
+build --flag_alias=doom_iwad=//config/iwad

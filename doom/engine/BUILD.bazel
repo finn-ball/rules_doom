@@ -1,0 +1,38 @@
+load("//doom:defs.bzl", "doom_engine")
+
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "engine",
+    actual = select({
+        "//config/engine:ascii": ":ascii",
+        "//config/engine:crispy": ":crispy",
+        "//config/engine:uzdoom": ":uzdoom",
+        "//conditions:default": ":uzdoom",
+    }),
+)
+
+doom_engine(
+    name = "crispy",
+    runner = "@crispy-doom//src:crispy-doom",
+    start_map_style = "warp",
+)
+
+doom_engine(
+    name = "uzdoom",
+    runner = select(
+        {
+            "@platforms//os:linux": "@uzdoom_linux_appimage//file:Linux-UZDoom-4.14.3.AppImage",
+            "@platforms//os:windows": "@uzdoom_windows//:uzdoom.exe",
+            "@platforms//os:osx": "@uzdoom_macos//:uzdoom.app/Contents/MacOS/uzdoom",
+        },
+        no_match_error = "UZDoom prebuilt engine is configured only for Linux, Windows, and macOS.",
+    ),
+    start_map_style = "map",
+)
+
+doom_engine(
+    name = "ascii",
+    runner = "@doom_ascii//:ascii",
+    start_map_style = "warp",
+)

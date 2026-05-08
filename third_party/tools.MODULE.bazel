@@ -1,0 +1,33 @@
+bazel_dep(name = "rules_java", version = "9.1.0")
+bazel_dep(name = "zlib", version = "1.3.2")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "zdbsp",
+    build_file = "//third_party:zdbsp.BUILD.bazel",
+    sha256 = "586303cbe1189c2b2239b9713fa8755c3f8aabf6f439d0dd29920b91fb236f29",
+    strip_prefix = "zdbsp-1.19",
+    urls = [
+        "https://github.com/rheit/zdbsp/archive/refs/tags/v1.19.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "doomtools",
+    build_file = "//third_party:doomtools.BUILD.bazel",
+    sha256 = "b4f1f8f5ea3d4315984d672ffa4e33bbcc2ad34911479d7f61f2845c27eef675",
+    urls = [
+        "https://github.com/MTrop/DoomTools/releases/download/2026.02.21-RELEASE/doomtools-jar-2026.02.21.160741918.zip",
+    ],
+)
+
+http_archive(
+    name = "wadc",
+    build_file = "//third_party:wadc.BUILD.bazel",
+    sha256 = "2f8eca5ec00ec12c447cad9c933beed21897c2f45785dfe89982feda03608bad",
+    strip_prefix = "wadc-3.1",
+    urls = [
+        "https://github.com/jmtd/wadc/releases/download/v3.1/wadc-3.1-bin.zip",
+    ],
+)

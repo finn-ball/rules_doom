@@ -1,0 +1,16 @@
+load("//doom:defs.bzl", "doom_launch", "doom_wadc_pwad")
+
+package(default_visibility = ["//visibility:public"])
+
+doom_wadc_pwad(
+    name = "entryway_pwad",
+    src = "@wadc//:examples/entryway.wl",
+    map_namespace_style = "mapxx",
+    no_source_lump = True,
+)
+
+doom_launch(
+    name = "entryway",
+    pwads = [":entryway_pwad"],
+    start_map = "MAP01",
+)
