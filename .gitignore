@@ -1,0 +1,16 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Bazel outputs and local state
+/bazel-*
+/MODULE.bazel.lock
+
+# Local Doom IWAD/PWAD binaries (user-provided or generated)
+*.wad
+*.WAD

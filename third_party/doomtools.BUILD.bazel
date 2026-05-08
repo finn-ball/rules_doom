@@ -1,0 +1,32 @@
+load("@rules_java//java:java_binary.bzl", "java_binary")
+load("@rules_java//java:java_import.bzl", "java_import")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":license"],
+)
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:MIT"],
+    license_text = "docs/LICENSE.txt",
+)
+
+java_import(
+    name = "doomtools_jar",
+    jars = glob(["*.jar"]),
+)
+
+java_binary(
+    name = "wadscript",
+    main_class = "net.mtrop.doom.tools.WadScriptMain",
+    runtime_deps = [":doomtools_jar"],
+    visibility = ["//visibility:public"],
+)
+
+java_binary(
+    name = "wadmerge",
+    main_class = "net.mtrop.doom.tools.WadMergeMain",
+    runtime_deps = [":doomtools_jar"],
+    visibility = ["//visibility:public"],
+)

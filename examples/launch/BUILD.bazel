@@ -1,0 +1,26 @@
+load("//doom:defs.bzl", "doom_launch")
+
+package(default_visibility = ["//visibility:public"])
+
+doom_launch(
+    name = "freedoom2",
+    launch_args = ["-fullscreen"],
+)
+
+doom_launch(
+    name = "freedoom1",
+    # engine = "//doom/engine:uzdoom",
+    iwad = "//doom/wads:freedoom1",
+    launch_args = ["-fullscreen"],
+)
+
+doom_launch(
+    name = "freedoom2_ascii",
+    engine = "//doom/engine:ascii",
+)
+
+doom_launch(
+    name = "freedoom2_low_level",
+    engine = "//doom/engine",
+    iwad = "//doom/wads:iwad",
+)

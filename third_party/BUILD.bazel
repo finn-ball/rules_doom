@@ -1,0 +1,8 @@
+exports_files([
+    "doomtools.BUILD.bazel",
+    "engine.MODULE.bazel",
+    "tools.MODULE.bazel",
+    "wadc.BUILD.bazel",
+    "wads.MODULE.bazel",
+    "zdbsp.BUILD.bazel",
+])
