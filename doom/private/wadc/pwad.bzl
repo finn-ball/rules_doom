@@ -17,6 +17,16 @@ def doom_wadc_pwad(
 
     Defaults to mapxx because the bundled WadC example and the normal Doom II
     workflow produce/play MAP01-style maps. Override for a known E#M# source.
+
+    Args:
+      name: Target name.
+      src: WadC source file to compile.
+      seed: Random seed passed to the WadC compiler.
+      no_source_lump: Whether to omit the WadC source lump from the output.
+      extra_args: Additional command-line arguments for the WadC compiler.
+      map_namespace_style: Map naming style exposed by the final PWAD.
+      visibility: Visibility to apply to the exported PWAD target.
+      **kwargs: Additional arguments forwarded to `doom_pwad`.
     """
     extra_args = extra_args or []
 

@@ -27,8 +27,8 @@ java_import(
 java_binary(
     name = "wadc",
     main_class = "org.redmars.wadc.WadCCLI",
-    runtime_deps = [":wadc_jar"],
     visibility = ["//visibility:public"],
+    runtime_deps = [":wadc_jar"],
 )
 
 filegroup(

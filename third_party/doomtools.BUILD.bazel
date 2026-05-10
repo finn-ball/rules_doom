@@ -20,13 +20,13 @@ java_import(
 java_binary(
     name = "wadscript",
     main_class = "net.mtrop.doom.tools.WadScriptMain",
-    runtime_deps = [":doomtools_jar"],
     visibility = ["//visibility:public"],
+    runtime_deps = [":doomtools_jar"],
 )
 
 java_binary(
     name = "wadmerge",
     main_class = "net.mtrop.doom.tools.WadMergeMain",
-    runtime_deps = [":doomtools_jar"],
     visibility = ["//visibility:public"],
+    runtime_deps = [":doomtools_jar"],
 )

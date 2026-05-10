@@ -14,7 +14,10 @@ license(
 cc_library(
     name = "zdbsp_lib",
     srcs = glob(
-        ["*.c", "*.cpp"],
+        [
+            "*.c",
+            "*.cpp",
+        ],
         exclude = [
             "main.cpp",
             "nodebuild_classify_sse1.cpp",
@@ -40,6 +43,6 @@ cc_binary(
         "DISABLE_SSE",
         "stricmp=strcasecmp",
     ],
-    deps = [":zdbsp_lib"],
     visibility = ["//visibility:public"],
+    deps = [":zdbsp_lib"],
 )
