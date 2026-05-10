@@ -1,3 +1,5 @@
+"""Repository rule for launching terminal Doom during repository fetch."""
+
 load("@bazel_skylib//lib:shell.bzl", "shell")
 
 # Inspired by snazel: https://github.com/TheGrizzlyDev/snazel
@@ -6,8 +8,7 @@ load("@bazel_skylib//lib:shell.bzl", "shell")
 # when Bazel has a real terminal, and otherwise leaves behind
 # a harmless empty target.
 
-def _empty_repo(repo_ctx, reason):
-    print("doom_terminal_repository skipped: {}".format(reason))
+def _empty_repo(repo_ctx):
     repo_ctx.file("BUILD.bazel", """
 package(default_visibility = ["//visibility:public"])
 
@@ -48,18 +49,18 @@ done"""],
 
 def _doom_terminal_repository_impl(repo_ctx):
     if "linux" not in repo_ctx.os.name.lower():
-        _empty_repo(repo_ctx, "only Linux is supported")
+        _empty_repo(repo_ctx)
         return
 
     bash = repo_ctx.which("bash")
     script = repo_ctx.which("script")
     if not bash or not script:
-        _empty_repo(repo_ctx, "requires both 'bash' and 'script' in PATH")
+        _empty_repo(repo_ctx)
         return
 
     tty = _bazel_tty(repo_ctx, bash)
     if not tty:
-        _empty_repo(repo_ctx, "could not find Bazel's terminal")
+        _empty_repo(repo_ctx)
         return
 
     repo_ctx.download_and_extract(

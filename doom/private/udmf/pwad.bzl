@@ -16,6 +16,15 @@ def doom_udmf_pwad(
 
     map_namespace_style defaults to "mapxx" because this project's UDMF maps
     use MAP## naming. Override only when a concrete need exists.
+
+    Args:
+      name: Target name.
+      src: UDMF TEXTMAP source file to compile.
+      map_name: Map lump name to emit into the WAD.
+      behavior: Optional BEHAVIOR lump input.
+      map_namespace_style: Map naming style exposed by the final PWAD.
+      visibility: Visibility to apply to the exported PWAD target.
+      **kwargs: Additional arguments forwarded to `doom_pwad`.
     """
     raw_name = name + "_raw_wad_file"
     final_name = name + "_wad_file"
