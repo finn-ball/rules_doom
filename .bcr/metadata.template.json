@@ -1,0 +1,16 @@
+{
+  "homepage": "https://github.com/finn-ball/rules_doom",
+  "maintainers": [
+    {
+      "email": "finn.ball@codificasolutions.com",
+      "name": "Finn Ball",
+      "github": "finn-ball",
+      "github_user_id": 53278189
+    }
+  ],
+  "repository": [
+    "github:finn-ball/rules_doom"
+  ],
+  "versions": [],
+  "yanked_versions": {}
+}
